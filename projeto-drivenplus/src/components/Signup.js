@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { ThreeDots } from 'react-loader-spinner';
 import axios from "axios";
 
-import { Container } from './Style';
+import { Container } from '../styles/Style';
 
 export default function Signup() {
     const navigate = useNavigate()

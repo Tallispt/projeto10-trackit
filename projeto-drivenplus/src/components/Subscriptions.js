@@ -2,17 +2,22 @@ import styled from 'styled-components'
 import axios from 'axios'
 import { useEffect, useContext, useState } from 'react'
 import UserContext from '../context/UserContext';
-import { useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+
+function PlanContainer({ plan }) {
+    return (
+        <PlanBox to={`/subscriptions/${plan.id}`}>
+            <img src={plan.image} alt='logo' />
+            <p>R$ {plan.price.replace('.', ',')}</p>
+        </PlanBox>
+    )
+}
 
 export default function Subscriptions() {
     const navigate = useNavigate()
-    const { idPlan } = useParams()
-    console.log(idPlan)
+
     const { clientInfo } = useContext(UserContext);
     const [plans, setPlans] = useState([])
-
-
-    function handleClick() { }
 
     useEffect(() => {
         const config = {
@@ -37,11 +42,10 @@ export default function Subscriptions() {
         <Container>
             <h1>Escolha seu Plano</h1>
             <InnerContainer>
-                {plans.map(plan =>
-                    <PlanBox onClick={handleClick} key={plan.id}>
-                        <img src={plan.image} alt='logo' />
-                        <p>{plan.price}</p>
-                    </PlanBox>)}
+                {plans.map(plan => <PlanContainer plan={plan} key={plan.id} onMouseEnter={event => {
+                    event.target.style.background = '#2C3333'
+                }}
+                    onMouseLeave={event => event.target.style.background = ''} />)}
             </InnerContainer>
         </Container>
     )
@@ -70,7 +74,7 @@ const InnerContainer = styled.div`
     width: 100%;
     `
 
-const PlanBox = styled.div`
+const PlanBox = styled(Link)`
     display: flex;
     border: 3px solid #7E7E7E;
     border-radius: 12px;
@@ -78,11 +82,11 @@ const PlanBox = styled.div`
     align-items: center;
     height: 170px;
     width: 100%;
+    text-decoration: none;
 
     img {
         width: 140px;
         height: 95px;
-
     }
 
     p {

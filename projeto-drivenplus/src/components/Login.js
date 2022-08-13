@@ -5,7 +5,7 @@ import { ThreeDots } from 'react-loader-spinner';
 import axios from "axios";
 
 import Logo from '../Assets/Logo.png'
-import { Container } from './Style';
+import { Container } from '../styles/Style';
 
 export default function Login() {
     const navigate = useNavigate()

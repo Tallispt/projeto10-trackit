@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import UserContext from "../context/UserContext";
 
-import { GlobalStyle } from "./GlobalStyles";
+import { GlobalStyle } from "../styles/GlobalStyles";
 import Login from "./Login"
 import Signup from "./Signup"
 import Home from "./Home"
@@ -21,7 +21,7 @@ export default function App() {
           <Route path="/sign-up" element={<Signup />} />
           <Route path="/home" element={<Home />} />
           <Route path="/subscriptions" element={<Subscriptions />} />
-          <Route path="/subscriptions/:idPlan" element={<Plan />} />
+          <Route path="/subscriptions/:planId" element={<Plan />} />
         </Routes>
       </BrowserRouter>
     </UserContext.Provider>
