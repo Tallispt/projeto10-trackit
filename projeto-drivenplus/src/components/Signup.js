@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { ThreeDots } from 'react-loader-spinner';
 import axios from "axios";
 
-import { Container } from '../styles/Style';
+import { Container, Input, Button } from '../styles/Style';
 
 export default function Signup() {
     const navigate = useNavigate()
@@ -48,7 +48,7 @@ export default function Signup() {
     return (
         <Container loading={loading}>
             <form onSubmit={handleSignup}>
-                <input
+                <Input
                     placeholder='Nome'
                     type='text'
                     name='name'
@@ -59,7 +59,7 @@ export default function Signup() {
                         })
                     }}
                     value={signupInfo.name} />
-                <input
+                <Input
                     placeholder='CPF'
                     type='number'
                     name='cpf'
@@ -70,7 +70,7 @@ export default function Signup() {
                         })
                     }}
                     value={signupInfo.image} />
-                <input
+                <Input
                     placeholder='E-mail'
                     type='email'
                     name='email'
@@ -81,7 +81,7 @@ export default function Signup() {
                         })
                     }}
                     value={signupInfo.email} />
-                <input
+                <Input
                     placeholder='Senha'
                     type='password'
                     name='password'
@@ -92,11 +92,11 @@ export default function Signup() {
                         })
                     }}
                     value={signupInfo.password} />
-                <button type="submit">
+                <Button type="submit">
                     {!loading ?
                         'CADASTRAR' :
                         <ThreeDots color="#FFFFFF" width={80} />}
-                </button>
+                </Button>
             </form>
             <Link className='link' to="/">Já possui uma conta? Entre</Link>
         </Container>

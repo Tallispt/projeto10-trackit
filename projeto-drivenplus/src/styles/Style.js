@@ -24,7 +24,17 @@ form {
     width: 100%;
 }
 
-input {
+.link {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    text-decoration-line: underline;
+    color: #FFFFFF;
+    text-align: center;
+}
+`;
+
+export const Input = styled.input`
     height: 52px;
     background: ${props => props.loading ? '#D4D4D4' : '#FFFFFF'};
     border: 1px solid #D5D5D5;
@@ -33,7 +43,6 @@ input {
     font-weight: 400;
     font-size: 14px;
     line-height: 16px;
-}
 
 input::placeholder {
     font-weight: 400;
@@ -41,9 +50,9 @@ input::placeholder {
     line-height: 16px;
     color: #7E7E7E;
 
-}
+}`
 
-button {
+export const Button = styled.button`
     height: 52px;
     width: 100%;
     background: #FF4791;
@@ -60,14 +69,4 @@ button {
     font-weight: 700;
     font-size: 14px;
     line-height: 16px;
-}
-
-.link {
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 16px;
-    text-decoration-line: underline;
-    color: #FFFFFF;
-    text-align: center;
-}
-`;
+`

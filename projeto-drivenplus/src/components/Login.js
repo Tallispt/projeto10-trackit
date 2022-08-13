@@ -5,7 +5,7 @@ import { ThreeDots } from 'react-loader-spinner';
 import axios from "axios";
 
 import Logo from '../Assets/Logo.png'
-import { Container } from '../styles/Style';
+import { Container, Input, Button } from '../styles/Style';
 
 export default function Login() {
     const navigate = useNavigate()
@@ -59,7 +59,7 @@ export default function Login() {
         <Container loading={loading}>
             <img src={Logo} alt='logo' />
             <form onSubmit={handleLogin}>
-                <input
+                <Input
                     placeholder='E-mail'
                     type='email'
                     name='email'
@@ -70,7 +70,7 @@ export default function Login() {
                         })
                     }}
                     value={loginInfo.email} />
-                <input
+                <Input
                     placeholder='Senha'
                     type='password'
                     name='password'
@@ -81,11 +81,11 @@ export default function Login() {
                         })
                     }}
                     value={loginInfo.password} />
-                <button type="submit">
+                <Button type="submit">
                     {!loading ?
                         'ENTRAR' :
                         <ThreeDots color="#FFFFFF" width={80} />}
-                </button>
+                </Button>
             </form>
             <Link className='link' to="/sign-up">Não possui uma conta? Cadastre-se</Link>
         </Container>
