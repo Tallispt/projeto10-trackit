@@ -6,27 +6,27 @@ import { useContext } from "react";
 import { Button } from "../../styles/Style";
 import { useNavigate } from 'react-router-dom';
 
-export default function Modal({ setIsModalVisible, plan, planInfo }) {
+export default function Modal({ setIsModalVisible }) {
     const { clientInfo, setClientInfo } = useContext(UserContext);
     const navigate = useNavigate();
 
     function handleClick() {
-
+        console.log(clientInfo)
         const config = {
             headers: {
                 'Authorization': `Bearer ${clientInfo.token}`
             }
         }
 
-        axios.post('https://mock-api.driven.com.br/api/v4/driven-plus/subscriptions', planInfo, config)
+        axios.delete('https://mock-api.driven.com.br/api/v4/driven-plus/subscriptions', config)
             .then(r => {
-                setClientInfo({ ...clientInfo, membership: { ...r.data.membership } })
-                localStorage.setItem('client', JSON.stringify({ ...clientInfo, membership: { ...r.data.membership } }))
-                navigate('/home')
+                setClientInfo({ ...clientInfo, membership: {} })
+                localStorage.setItem('client', JSON.stringify({ ...clientInfo, membership: {} }))
+                navigate('/subscriptions')
             })
             .catch(e => {
                 if (e) {
-                    alert('Erro: confira seus dados e tente novamente.')
+                    alert('Erro ao cancelar')
                     setIsModalVisible(false)
                     console.log(e)
                 }
@@ -37,7 +37,7 @@ export default function Modal({ setIsModalVisible, plan, planInfo }) {
         <ModalContainer >
             <ion-icon name="close-circle-sharp" onClick={() => { setIsModalVisible(false) }}></ion-icon>
             < div >
-                <h3>Tem certeza que deseja assinar o plano {plan.name} (R$ {plan.price.replace('.', ',')})?</h3>
+                <h3>Tem certeza que deseja cancelar o plano {clientInfo.membership.name}?</h3>
                 <span>
                     <Button onClick={() => { setIsModalVisible(false) }}>Não</Button>
                     <Button onClick={handleClick}>SIM</Button>

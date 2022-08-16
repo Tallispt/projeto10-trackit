@@ -1,5 +1,5 @@
 import axios from "axios"
-import { useEffect, useContext, useState } from "react"
+import { useEffect, useContext, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from 'styled-components'
 import UserContext from '../../context/UserContext';
@@ -46,8 +46,8 @@ export default function Plan() {
     function handlePlan(event) {
         event.preventDefault()
 
+        setPlanInfo({ ...planInfo, cardNumber: planInfo.cardNumber.match(/.{1,4}/g).join(' ') })
         setIsModalVisible(true)
-        console.log(planInfo)
     }
 
     return (
@@ -127,6 +127,8 @@ export default function Plan() {
                     {
                         isModalVisible ?
                             <Modal
+                                plan={plan}
+                                planInfo={planInfo}
                                 setIsModalVisible={setIsModalVisible}
                             /> : null
                     }

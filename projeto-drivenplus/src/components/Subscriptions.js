@@ -66,7 +66,7 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 16px 43px;
+    padding: 16px 43px 0 43px;
 
     h1 {
         font-weight: 700;
