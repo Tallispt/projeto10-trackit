@@ -34,9 +34,34 @@ form {
 }
 `;
 
+export const PlanContainer = styled.div`
+
+    form { display: flex;
+        flex-direction: column;
+        margin: 24px 40px 0 40px;
+        gap: 8px;
+    }
+
+    form div {
+        display: flex;
+        gap: 9px
+    }
+
+    form div input {
+        width: 50%;
+        padding-left: 2px;
+        display: flex;
+        align-items: center;
+    }
+
+    form button {
+        margin-top: 4px;
+    }
+`
+
 export const Input = styled.input`
     height: 52px;
-    background: ${props => props.loading ? '#D4D4D4' : '#FFFFFF'};
+    background: ${({ loading }) => loading ? '#D4D4D4' : '#FFFFFF'};
     border: 1px solid #D5D5D5;
     border-radius: 8px;
     padding-left: 14px;
@@ -56,7 +81,7 @@ export const Button = styled.button`
     height: 52px;
     width: 100%;
     background: #FF4791;
-    opacity: ${props => props.loading ? 0.7 : 1};
+    opacity: ${({ loading }) => loading ? 0.7 : 1};
     border: none;
     margin-top: 8px;
     border-radius: 8px;
@@ -69,4 +94,11 @@ export const Button = styled.button`
     font-weight: 700;
     font-size: 14px;
     line-height: 16px;
+`
+
+export const Load = styled.div`
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 `

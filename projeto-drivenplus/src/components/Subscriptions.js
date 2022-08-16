@@ -1,8 +1,11 @@
-import styled from 'styled-components'
-import axios from 'axios'
-import { useEffect, useContext, useState } from 'react'
+import styled from 'styled-components';
+import axios from 'axios';
+import { useEffect, useContext, useState } from 'react';
 import UserContext from '../context/UserContext';
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom';
+import { ThreeDots } from "react-loader-spinner";
+
+import { Load } from '../styles/Style'
 
 function PlanContainer({ plan }) {
     return (
@@ -18,6 +21,7 @@ export default function Subscriptions() {
 
     const { clientInfo } = useContext(UserContext);
     const [plans, setPlans] = useState([])
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         const config = {
@@ -27,9 +31,10 @@ export default function Subscriptions() {
         }
 
         axios.get('https://mock-api.driven.com.br/api/v4/driven-plus/subscriptions/memberships', config)
-            .then(r =>
+            .then(r => {
                 setPlans([...r.data])
-            )
+                setLoading(!loading)
+            })
             .catch(e => {
                 if (e) {
                     localStorage.removeItem('client')
@@ -40,13 +45,19 @@ export default function Subscriptions() {
 
     return (
         <Container>
-            <h1>Escolha seu Plano</h1>
-            <InnerContainer>
-                {plans.map(plan => <PlanContainer plan={plan} key={plan.id} onMouseEnter={event => {
-                    event.target.style.background = '#2C3333'
-                }}
-                    onMouseLeave={event => event.target.style.background = ''} />)}
-            </InnerContainer>
+            {loading ?
+                (<Load>
+                    <ThreeDots color={'#FFFFFF'} width={120} />
+                </Load>) :
+                (<>
+                    <h1>Escolha seu Plano</h1>
+                    <InnerContainer>
+                        {plans.map(plan => <PlanContainer plan={plan} key={plan.id} onMouseEnter={event => {
+                            event.target.style.background = '#2C3333'
+                        }}
+                            onMouseLeave={event => event.target.style.background = ''} />)}
+                    </InnerContainer>
+                </>)}
         </Container>
     )
 }
@@ -72,7 +83,7 @@ const InnerContainer = styled.div`
     flex-direction: column;
     gap: 10px;
     width: 100%;
-    `
+`
 
 const PlanBox = styled(Link)`
     display: flex;

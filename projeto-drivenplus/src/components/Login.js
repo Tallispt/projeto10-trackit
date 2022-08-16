@@ -33,7 +33,6 @@ export default function Login() {
 
         setLoading(!loading)
 
-
         promise.then(response => {
             if (response) {
                 setClientInfo({
@@ -69,6 +68,7 @@ export default function Login() {
                             email: e.target.value
                         })
                     }}
+                    required
                     value={loginInfo.email} />
                 <Input
                     placeholder='Senha'
@@ -80,6 +80,7 @@ export default function Login() {
                             password: e.target.value
                         })
                     }}
+                    required
                     value={loginInfo.password} />
                 <Button type="submit">
                     {!loading ?

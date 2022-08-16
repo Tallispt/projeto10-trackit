@@ -5,9 +5,9 @@ import UserContext from "../context/UserContext";
 import { GlobalStyle } from "../styles/GlobalStyles";
 import Login from "./Login"
 import Signup from "./Signup"
-import Home from "./Home"
+import Home from "./Home/Home"
 import Subscriptions from "./Subscriptions"
-import Plan from "./Plan";
+import Plan from "./Plan/Plan";
 
 export default function App() {
   const [clientInfo, setClientInfo] = useState({})
